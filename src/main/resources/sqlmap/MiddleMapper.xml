@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.MiddleMapper">
+	<resultMap id="BaseResultMap" type="daomain.Middle">
+		<id column="id_m" jdbcType="INTEGER" property="id_m" />
+		<result column="id_l" jdbcType="INTEGER" property="id_l" />
+		<result column="id_b" jdbcType="INTEGER" property="id_b" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id_m, id_l, id_b
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from middle
+		where id_m = #{id_m,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from middle
+		where id_m = #{id_m,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="daomain.Middle">
+		insert into middle (id_m, id_l,
+		id_b 
+		)
+		values (#{id_m,jdbcType=INTEGER},
+		#{id_l,jdbcType=INTEGER},
+		#{id_b,jdbcType=INTEGER}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="daomain.Middle">
+		insert into middle
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id_m != null">
+				id_m,
+			</if>
+			<if test="id_l != null">
+				id_l,
+			</if>
+			<if test="id_b != null">
+				id_b,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id_m,jdbcType=INTEGER},
+			</if>
+			<if test="name != null">
+				#{id_l,jdbcType=INTEGER},
+			</if>
+			<if test="age != null">
+				#{id_b,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="daomain.Middle">
+		update middle
+		<set>
+			<if test="id_l != null">
+				id_l = #{id_l,jdbcType=INTEGER},
+			</if>
+			<if test="id_b != null">
+				id_b = #{id_b,jdbcType=INTEGER},
+			</if>
+		</set>
+		where id_m = #{id_m,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="daomain.Middle">
+		update middle
+		set
+		id_l = #{id_l,jdbcType=INTEGER},
+		id_b = #{id_b,jdbcType=INTEGER},
+		where id_m = #{id_m,jdbcType=INTEGER}
+	</update>
+</mapper>

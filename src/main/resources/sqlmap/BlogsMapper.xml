@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.BlogsMapper">
+	<resultMap id="BaseResultMap" type="daomain.Blogs">
+		<id column="id_b" jdbcType="INTEGER" property="id_b" />
+		<result column="id_u" jdbcType="INTEGER" property="id_u" />
+		<result column="headline" jdbcType="VARCHAR" property="headline" />
+		<result column="content" jdbcType="VARCHAR" property="content" />
+		<result column="dateline" jdbcType="VARCHAR" property="dateline" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id_b, id_u, headline, content, dateline
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from blogs
+		where id_b = #{id_b,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from blogs
+		where id_b = #{id_b,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="daomain.Blogs">
+		insert into blogs (id_b, id_u, headline,
+		content, dateline
+		)
+		values (#{id_b,jdbcType=INTEGER},
+		#{id_u,jdbcType=INTEGER},
+		#{headline,jdbcType=VARCHAR},
+		#{content,jdbcType=VARCHAR},
+		#{dateline,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="daomain.Blogs">
+		insert into blogs
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    <if test="id_b != null">
+				id_b,
+			</if>
+			<if test="id_u != null">
+				id_u,
+			</if>
+			<if test="headline != null">
+				headline,
+			</if>
+			<if test="content != null">
+				content,
+			</if>
+			<if test="dateline != null">
+				dateline,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+		    <if test="id_b != null">
+				#{id_b,jdbcType=INTEGER},
+			</if>
+			<if test="id_u != null">
+				#{id_u,jdbcType=INTEGER},
+			</if>
+			<if test="headline != null">
+				#{headline,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				#{content,jdbcType=VARCHAR},
+			</if>
+			<if test="dateline != null">
+				#{dateline,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="daomain.Blogs">
+		update blogs
+		<set>
+			<if test="id_u != null">
+				id_u = #{id_u,jdbcType=INTEGER},
+			</if>
+			<if test="headline != null">
+				headline = #{headline,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				content = #{content,jdbcType=VARCHAR},
+			</if>
+			<if test="dateline != null">
+				dateline = #{dateline,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id_b = #{id_b,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="daomain.Blogs">
+		update blogs
+		set
+		id_u = #{id_u,jdbcType=INTEGER},
+		headline = #{headline,jdbcType=VARCHAR},
+		content = #{content,jdbcType=VARCHAR},
+		dateline = #{dateline,jdbcType=VARCHAR},
+		where id_b = #{id_b,jdbcType=INTEGER}
+	</update>
+</mapper>
