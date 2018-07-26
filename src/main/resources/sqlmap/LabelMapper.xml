@@ -65,4 +65,11 @@
 		<include refid="Base_Column_List" />
 		from label
 	</select>
+	<select id="selectByParams" parameterType="java.lang.String"
+		resultType="java.lang.Integer">
+		select count(*) from label
+		<where>
+		<if test="tagname != null and tagname.length()>0" >and tagname=#{tagname,jdbcType=VARCHAR}</if>
+		</where>
+	</select>
 </mapper>

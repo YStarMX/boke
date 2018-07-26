@@ -41,6 +41,7 @@
 				  </#list>
 				  </#if>
 				</table>
+				 <p>${msg!}</p>
 		        <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">
 		        	创建新标签
 		        </button>
@@ -53,18 +54,18 @@
 		        					&times;
 		        				</button>
 		        				<h4 class="modal-title" id="myModalLabel">
-		        					模态框（Modal）标题
+		        					标签内容
 		        				</h4>
 		        			</div>
 		        			<div class="modal-body">
-		        				在这里添加一些文本
-		        			</div>
+		        			<form class="form-horizontal" role="form" action="selectTagName.htm" method="post">
+		        			<input type="text" name="tagname" id="tagname" required
+		   	 				onmouseover="this.focus();" class="form-control" value="${(label.tagneme)!}"/>
 		        			<div class="modal-footer">
-		        				<button type="button" class="btn btn-default" data-dismiss="modal">关闭
-		        				</button>
-		        				<button type="button" class="btn btn-primary">
-		        					提交更改
-		        				</button>
+	        				    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+	        				    <button type="submit" class="btn btn-primary">提交标签</button>
+	        			    </div>
+		        			</form>
 		        			</div>
 		        		</div>
 		        	</div>

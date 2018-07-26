@@ -33,4 +33,8 @@ public class LabelService {
 	public List<Label> allLabels() {
 		return labelMapper.getAllLabel();
 	}
+
+	public int selectLabel(Label label) {
+		return labelMapper.selectByParams(label);
+	}
 }
