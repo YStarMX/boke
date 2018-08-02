@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import service.LabelService;
 import daomain.Label;
@@ -15,19 +16,15 @@ public class LabelAction {
 	@Autowired
 	private LabelService labelService;
 
-	@RequestMapping(value = "/selectTagName.htm")
-	public String selectTagName(Model model ,Label label) {
+	@RequestMapping(value = "/addLabel.json")
+	@ResponseBody
+	public String addLabel(Model model ,Label label) {
 		if (labelService.selectLabel(label) > 0){
-			List<Label> labelList = labelService.allLabels();
-			model.addAttribute("labelList", labelList);
 			model.addAttribute("msg", "标签名已存在");
-			return "BokeHome";
+			return "success";
 		}else{
 			labelService.addLabel(label);
-			List<Label> labelList = labelService.allLabels();
-			model.addAttribute("labelList", labelList);
-			model.addAttribute("msg", "标签添加成功");
-			return "BokeHome";
+			return "success";
 		}
 	}
 }

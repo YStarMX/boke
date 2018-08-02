@@ -58,14 +58,14 @@
 		        				</h4>
 		        			</div>
 		        			<div class="modal-body">
-		        			<form class="form-horizontal" role="form" action="selectTagName.htm" method="post">
+		        			<!--form class="form-horizontal" role="form" action="selectTagName.htm" method="post"-->
 		        			<input type="text" name="tagname" id="tagname" required
 		   	 				onmouseover="this.focus();" class="form-control" value="${(label.tagneme)!}"/>
 		        			<div class="modal-footer">
 	        				    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-	        				    <button type="submit" class="btn btn-primary">提交标签</button>
+	        				    <button class="btn btn-primary" onclick="addLabel()">提交标签</button>
 	        			    </div>
-		        			</form>
+		        			<!--/form-->
 		        			</div>
 		        		</div>
 		        	</div>
@@ -89,3 +89,12 @@
 </div>
 </body>
 </html>
+<script>
+function addLabel() {
+	$.post("addLabel.json", {
+		tagname : $("#tagname").val()
+	}, function(data, status) {
+		$("TR").append();
+	});
+}
+</script>
