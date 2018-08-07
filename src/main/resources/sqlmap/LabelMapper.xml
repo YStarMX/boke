@@ -15,6 +15,11 @@
 		from label
 		where id_l = #{id_l,jdbcType=INTEGER}
 	</select>
+		<select id="selectByTagName" parameterType="java.lang.String"
+		resultType="java.lang.Integer">
+		select id_l from label
+		where tagname = #{tagname,jdbcType=VARCHAR}
+	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from label
 		where id_l = #{id_l,jdbcType=INTEGER}

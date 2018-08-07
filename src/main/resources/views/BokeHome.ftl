@@ -24,17 +24,19 @@
 	    <div class="col-md-4">
 	        <div class="panel panel-default">
 	            <div class="panel-heading">
-			        <h3 class="panel-title">标签</h3>
+			        <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">
+		        	创建新标签
+		            </button>
 		        </div>
-		        <div class="panel-body">
+		        <div class="panel-body pre-scrollable">
 				<table class="table table-striped">
 				  <TR align="center">
 					<TD width="150"><b>ID</b></TD>
-					<TD width="150"><b>tagName</b></TD>
+					<TD width="150"><b>标签</b></TD>
 				  </TR>
 				  <#if labelList??>
 				  <#list labelList as label>
-				  <TR align="center">
+				  <TR align="center" id="${label.id_l}">
 				    <TD>${label.id_l}</TD>
 				    <TD>${label.tagname}</TD>
 				  </TR>
@@ -42,9 +44,6 @@
 				  </#if>
 				</table>
 				 <p>${msg!}</p>
-		        <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">
-		        	创建新标签
-		        </button>
 		        <!-- 模态框（Modal） -->
 		        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		        	<div class="modal-dialog">
@@ -62,7 +61,7 @@
 		        			<input type="text" name="tagname" id="tagname" required
 		   	 				onmouseover="this.focus();" class="form-control" value="${(label.tagneme)!}"/>
 		        			<div class="modal-footer">
-	        				    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+	        				    <button type="button" class="btn btn-default" data-dismiss="modal" id="closeButton">关闭</button>
 	        				    <button class="btn btn-primary" onclick="addLabel()">提交标签</button>
 	        			    </div>
 		        			<!--/form-->
@@ -94,7 +93,12 @@ function addLabel() {
 	$.post("addLabel.json", {
 		tagname : $("#tagname").val()
 	}, function(data, status) {
-		$("TR").append();
+		if(data=="-1") {
+			alert("标签已存在");
+		} else {
+			$("table").append('<TR align="center" id="'+data+'"><TD>'+data+'</TD><TD>'+$("#tagname").val()+'</TD></TR>');
+			$("#closeButton").click();
+		}
 	});
 }
 </script>

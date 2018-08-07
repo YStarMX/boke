@@ -37,4 +37,8 @@ public class LabelService {
 	public int selectLabel(Label label) {
 		return labelMapper.selectByParams(label);
 	}
+	
+	public int getId(String tagname) {
+		return labelMapper.selectByTagName(tagname);
+	}
 }

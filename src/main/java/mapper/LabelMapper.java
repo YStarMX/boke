@@ -20,5 +20,7 @@ public interface LabelMapper {
     List<Label> getAllLabel();
     
     int selectByParams(Label record);
+    
+    int selectByTagName(String tagname);
 
 }
