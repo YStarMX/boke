@@ -36,4 +36,8 @@ public class UserService {
 		userMapper.insert(user);
 	}
 
+	public User qryUser(User user) {
+		return userMapper.selectUser(user);
+	}
+
 }

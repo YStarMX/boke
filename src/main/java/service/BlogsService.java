@@ -20,11 +20,11 @@ public class BlogsService {
 		return blogsMapper.selectByPrimaryKey(id);
 	}
 
-	public void modUser(Blogs blogs) {
+	public void modBlogs(Blogs blogs) {
 		blogsMapper.updateByPrimaryKeySelective(blogs);
 	}
 
-	public void addUser(Blogs blogs) {
+	public void addBlogs(Blogs blogs) {
 		blogsMapper.insert(blogs);
 	}
 }

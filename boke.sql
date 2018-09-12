@@ -14,7 +14,7 @@ CREATE TABLE blogs (
   id_u int,
   headline varchar(50) NOT NULL,
   content varchar(50) NOT NULL,
-  dateline date,
+  dateline timestamp NOT NULL default CURRENT_TIMESTAMP,
   FOREIGN KEY (id_u) REFERENCES user(Id_u)
 );
 

@@ -48,6 +48,7 @@ public class UserAction {
 		if (userService.selectUser(user) > 0) {
 			List<Label> labelList = labelService.allLabels();
 			model.addAttribute("labelList", labelList);
+			model.addAttribute("user", userService.qryUser(user));
 			return "BokeHome";
 		} else {
 			model.addAttribute("msg", "用户名或密码错误");

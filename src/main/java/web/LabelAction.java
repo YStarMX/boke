@@ -1,7 +1,10 @@
 package web;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -23,5 +26,12 @@ public class LabelAction {
 			int id = labelService.getId(label.getTagname());
 			return "" + id;
 		}
+	}
+	
+	@RequestMapping(value = "/selectLabel.htm")
+	public List<Label> selectLabel(Model model, Label label){
+		List<Label> labelList;
+		labelList = labelService.allLabels();
+		return labelList;
 	}
 }
