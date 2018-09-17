@@ -29,9 +29,17 @@ public class BlogsAction {
 		blogsService.addBlogs(blogs);
 		User user = new User();
 		user.setId_u(blogs.getId_u());
+		model.addAttribute("blogList", blogsService.getBlogs(blogs.getId_u()));
 		model.addAttribute("user", userService.qryUser(user));
 		List<Label> labelList = labelService.allLabels();
 		model.addAttribute("labelList", labelList);
 		return "BokeHome";
+	}
+	
+	@RequestMapping(value = "/deleteBlog.json")
+	@ResponseBody
+	public String deleteBlog(Integer id_b){
+		blogsService.delBlogs(id_b);
+		return "" + id_b;
 	}
 }

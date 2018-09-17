@@ -11,12 +11,12 @@
 	<sql id="Base_Column_List">
 		id_b, id_u, headline, content, dateline
 	</sql>
-	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+	<select id="selectByIdU" parameterType="java.lang.String"
 		resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from blogs
-		where id_b = #{id_b,jdbcType=INTEGER}
+		where id_u = #{id_u,jdbcType=VARCHAR}
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from blogs

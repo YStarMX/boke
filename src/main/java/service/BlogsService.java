@@ -1,5 +1,7 @@
 package service;
 
+import java.util.List;
+
 import mapper.BlogsMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +18,8 @@ public class BlogsService {
 		blogsMapper.deleteByPrimaryKey(id);
 	}
 
-	public Blogs getBlogs(Integer id) {
-		return blogsMapper.selectByPrimaryKey(id);
+	public List<Blogs> getBlogs(String id_u) {
+		return blogsMapper.selectByIdU(id_u);
 	}
 
 	public void modBlogs(Blogs blogs) {

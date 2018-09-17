@@ -27,11 +27,5 @@ public class LabelAction {
 			return "" + id;
 		}
 	}
-	
-	@RequestMapping(value = "/selectLabel.htm")
-	public List<Label> selectLabel(Model model, Label label){
-		List<Label> labelList;
-		labelList = labelService.allLabels();
-		return labelList;
-	}
+
 }

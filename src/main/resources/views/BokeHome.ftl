@@ -81,10 +81,25 @@
 	    <div class="col-md-8">
         <div class="panel panel-default">
             <div class="panel-heading">
-		        <button type="button" class="btn btn-default" data-target="#two" data-toggle="collapse" action="selectLabel.htm">创建博客</button>
+		        <button type="button" class="btn btn-default" data-target="#two" data-toggle="collapse">创建博客</button>
 	        </div>
 	        <div class="panel-body">
-	            
+	        <div class="panel-body pre-scrollable">
+	            <#if blogList??>
+	              <#list blogList as blogs>
+	              <div class="panel panel-info" id="blog${blogs.id_b}">
+                     <div class="panel-heading">
+                     <h3 class="panel-title">${user.name}/${blogs.dateline}</h3>
+                     </div>
+                     <div class="panel-body">
+                                                        标签：${blogs.headline}<br>
+                                                        内容：${blogs.content}
+                     <button class="btn btn-primary" onclick="deleteBlog(${blogs.id_b})">删除</button>
+                     </div>
+                  </div>
+	              </#list>
+	            </#if>
+	        </div>
 	        </div>
         </div>
     </div>
@@ -98,7 +113,7 @@
 			<div class="col-lg-6">
 				<div class="input-group">
 				    <input type="hidden" id="id_u" name="id_u" value="${user.id_u}">
-					<input type="text" class="form-control" id="content" name="content">
+					<input type="text" class="form-control" id="content" name="content" required>
 					<span class="input-group-btn">
 						<button class="btn btn-default" type="submit">
 							Go!
@@ -135,9 +150,19 @@ function addLabel() {
 		} else {
 			$("table").append('<TR align="center" id="'+data+'"><TD>'+data+'</TD><TD>'+$("#tagname").val()+'</TD></TR>');
 			$("select").append('<option>'+$("#tagname").val()+'</option>');
+			$('#headline').selectpicker('refresh');
+			$('#headline').selectpicker('render');
 			$("#closeButton").click();
 		}
 	});
+}
+function deleteBlog(id_b){
+    $.post("deleteBlog.json",{
+    id_b : id_b
+    }, function(data, status){
+      $("#blog"+id_b).remove();
+      }
+    );
 }
 </script>
 <script type="text/javascript">

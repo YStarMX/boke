@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import service.LabelService;
 import service.UserService;
+import service.BlogsService;
 import daomain.Label;
 import daomain.User;
+import daomain.Blogs;
 
 @Controller
 public class UserAction {
@@ -18,6 +20,8 @@ public class UserAction {
 	private UserService userService;
 	@Autowired
 	private LabelService labelService;
+	@Autowired
+	private BlogsService blogsService;
 
 	@RequestMapping(value = "/index")
 	public String index(Model model) {
@@ -49,6 +53,8 @@ public class UserAction {
 			List<Label> labelList = labelService.allLabels();
 			model.addAttribute("labelList", labelList);
 			model.addAttribute("user", userService.qryUser(user));
+			List<Blogs> blogList = blogsService.getBlogs(userService.qryUser(user).getId_u());
+			model.addAttribute("blogList", blogList);
 			return "BokeHome";
 		} else {
 			model.addAttribute("msg", "用户名或密码错误");
